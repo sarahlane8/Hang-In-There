@@ -1,4 +1,7 @@
 // query selector variables go here 👇
+var randomStartImg = document.querySelector('.src');
+var randomStartTitle = document.querySelector('.poster-title');
+var randomStartQuote = document.querySelector('.poster-quote');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -109,3 +112,11 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+var startTitle = titles[getRandomIndex(titles)];
+randomStartTitle.innerText = startTitle;
+
+var startQuote = quotes[getRandomIndex(quotes)];
+randomStartQuote.innerText = startQuote;
+
+var startImg = images[getRandomIndex(images)];
+randomStartImg.innerText = startImg;
