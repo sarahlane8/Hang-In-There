@@ -1,5 +1,5 @@
 // query selector variables go here 👇
-var randomStartImg = document.querySelector('.src');
+var randomStartImg = document.querySelector('.poster-img');
 var randomStartTitle = document.querySelector('.poster-title');
 var randomStartQuote = document.querySelector('.poster-quote');
 
@@ -119,4 +119,4 @@ var startQuote = quotes[getRandomIndex(quotes)];
 randomStartQuote.innerText = startQuote;
 
 var startImg = images[getRandomIndex(images)];
-randomStartImg.innerText = startImg;
+randomStartImg.src = startImg;
