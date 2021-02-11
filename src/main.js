@@ -1,7 +1,9 @@
-// query selector variables go here 👇
+/// query selector variables go here 👇
 var mainPosterImg = document.querySelector('.poster-img');
 var mainPosterTitle = document.querySelector('.poster-title');
 var mainPosterQuote = document.querySelector('.poster-quote');
+
+var showSavedPosters = document.querySelector('.show-saved');
 
 var showAnotherRandomPoster = document.querySelector(".show-random");
 // we've provided you with some data to work with 👇
@@ -103,19 +105,31 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
+  // {
+  //   mainPosterTitle.innerText: "determination",
+  //   mainPosterQuote.innerText: "Great Job!",
+  //   mainPosterImg.src: "./assets/turtle.jpg"
+  // }
 var currentPoster;
 var startTitle = titles[getRandomIndex(titles)];
 var startQuote = quotes[getRandomIndex(quotes)];
 var startImg = images[getRandomIndex(images)];
+
 // event listeners go here 👇
 showAnotherRandomPoster.addEventListener("click", displayRandomPoster);
+
+showSavedPosters.addEventListener("click", displaySavedPosters);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
+}
+//
+function displaySavedPosters() {
 
 }
+
 
 function displayRandomPoster() {
   mainPosterTitle.innerText = titles[getRandomIndex(titles)];
