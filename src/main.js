@@ -5,7 +5,9 @@ var mainPosterQuote = document.querySelector('.poster-quote');
 
 var showSavedPosters = document.querySelector('.show-saved');
 
-var showAnotherRandomPoster = document.querySelector(".show-random");
+var showAnotherRandomPoster = document.querySelector('.show-random');
+
+var makeOwnPosterButton = document.querySelector('.make-poster');
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -116,9 +118,11 @@ var startQuote = quotes[getRandomIndex(quotes)];
 var startImg = images[getRandomIndex(images)];
 
 // event listeners go here 👇
-showAnotherRandomPoster.addEventListener("click", displayRandomPoster);
+showAnotherRandomPoster.addEventListener('click', displayRandomPoster);
 
-showSavedPosters.addEventListener("click", displaySavedPosters);
+showSavedPosters.addEventListener('click', displaySavedPosters);
+
+makeOwnPosterButton.addEventListener('click', displayMakePosterPrompt)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -135,6 +139,10 @@ function displayRandomPoster() {
   mainPosterTitle.innerText = titles[getRandomIndex(titles)];
   mainPosterQuote.innerText = quotes[getRandomIndex(quotes)];
   mainPosterImg.src = images[getRandomIndex(images)]
+}
+
+function displayMakePosterPrompt() {
+
 }
 
 
