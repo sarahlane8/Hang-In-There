@@ -3,9 +3,11 @@ var mainPosterImg = document.querySelector('.poster-img');
 var mainPosterTitle = document.querySelector('.poster-title');
 var mainPosterQuote = document.querySelector('.poster-quote');
 
-var showSavedPosters = document.querySelector('.show-saved');
-
+var showSavedPostersButton = document.querySelector('.show-saved');
+var backToMainButton = document.querySelector('.back-to-main');
 var showAnotherRandomPoster = document.querySelector(".show-random");
+var savedPostersSection = document.querySelector('.saved-posters');
+var mainPosterSection = document.querySelector('.main-poster');
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -118,7 +120,9 @@ var startImg = images[getRandomIndex(images)];
 // event listeners go here 👇
 showAnotherRandomPoster.addEventListener("click", displayRandomPoster);
 
-showSavedPosters.addEventListener("click", displaySavedPosters);
+showSavedPostersButton.addEventListener("click", displaySavedPosters);
+
+backToMainButton.addEventListener("click", displayMainPoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -127,7 +131,13 @@ function getRandomIndex(array) {
 }
 //
 function displaySavedPosters() {
+  mainPosterSection.classList.add('hidden');
+  savedPostersSection.classList.remove('hidden');
+}
 
+function displayMainPoster() {
+  mainPosterSection.classList.remove('hidden');
+  savedPostersSection.classList.add('hidden');
 }
 
 
