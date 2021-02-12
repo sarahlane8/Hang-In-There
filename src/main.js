@@ -12,6 +12,11 @@ var mainPosterSection = document.querySelector('.main-poster');
 var makePosterButton = document.querySelector('.show-form');
 var makePosterForm = document.querySelector('.poster-form');
 var nevermindBackHomeButton = document.querySelector('.show-main');
+var showMyPosterButton = document.querySelector('.make-poster');
+
+var userInputUrl = document.querySelector('#poster-image-url');
+var userInputTitle = document.querySelector('#poster-title');
+var userInputQuote = document.querySelector('#poster-quote');
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -111,15 +116,20 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
-  // {
-  //   mainPosterTitle.innerText: "determination",
-  //   mainPosterQuote.innerText: "Great Job!",
-  //   mainPosterImg.src: "./assets/turtle.jpg"
-  // }
+
+
+
+
 var currentPoster;
 var startTitle = titles[getRandomIndex(titles)];
 var startQuote = quotes[getRandomIndex(quotes)];
 var startImg = images[getRandomIndex(images)];
+
+// mainPosterTitle.innerText = startTitle;
+//
+// mainPosterQuote.innerText = startQuote;
+//
+// mainPosterImg.src = startImg;
 
 // event listeners go here 👇
 showAnotherRandomPoster.addEventListener("click", displayRandomPoster);
@@ -132,6 +142,9 @@ makePosterButton.addEventListener("click", displayMakePosterForm);
 
 nevermindBackHomeButton.addEventListener("click", returnHomePosterForm);
 
+showMyPosterButton.addEventListener("click", userMadePoster);
+
+window.addEventListener("load", displayRandomPoster);
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
@@ -165,8 +178,11 @@ function displayMakePosterForm() {
   makePosterForm.classList.remove('hidden');
 }
 
-mainPosterTitle.innerText = startTitle;
-
-mainPosterQuote.innerText = startQuote;
-
-mainPosterImg.src = startImg;
+function userMadePoster() {
+event.preventDefault();
+  mainPosterImg.src = userInputUrl.value;
+  mainPosterTitle.innerText = userInputTitle.value;
+  mainPosterQuote.innerText = userInputQuote.value;
+  mainPosterSection.classList.remove('hidden');
+  makePosterForm.classList.add('hidden');
+}
