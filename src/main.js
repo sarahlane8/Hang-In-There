@@ -3,16 +3,16 @@ var mainPosterImg = document.querySelector('.poster-img');
 var mainPosterTitle = document.querySelector('.poster-title');
 var mainPosterQuote = document.querySelector('.poster-quote');
 
-var showSavedPostersButton = document.querySelector('.show-saved');
-var backToMainButton = document.querySelector('.back-to-main');
-var showAnotherRandomPoster = document.querySelector(".show-random");
+var savedPostersBtn = document.querySelector('.show-saved');
+var backToMainBtn = document.querySelector('.back-to-main');
+var showRandomPoster = document.querySelector(".show-random");
 var savedPostersSection = document.querySelector('.saved-posters');
 var mainPosterSection = document.querySelector('.main-poster');
 
-var makePosterButton = document.querySelector('.show-form');
+var makePosterBtn = document.querySelector('.show-form');
 var makePosterForm = document.querySelector('.poster-form');
-var nevermindBackHomeButton = document.querySelector('.show-main');
-var showMyPosterButton = document.querySelector('.make-poster');
+var nmBackHomeBtn = document.querySelector('.show-main');
+var showMyPosterBtn = document.querySelector('.make-poster');
 
 var userInputUrl = document.querySelector('#poster-image-url');
 var userInputTitle = document.querySelector('#poster-title');
@@ -132,17 +132,17 @@ var startImg = images[getRandomIndex(images)];
 // mainPosterImg.src = startImg;
 
 // event listeners go here 👇
-showAnotherRandomPoster.addEventListener("click", displayRandomPoster);
+showRandomPoster.addEventListener("click", displayRandomPoster);
 
-showSavedPostersButton.addEventListener("click", displaySavedPosters);
+savedPostersBtn.addEventListener("click", displaySavedPosters);
 
-backToMainButton.addEventListener("click", displayMainPoster);
+backToMainBtn.addEventListener("click", displayMainPoster);
 
-makePosterButton.addEventListener("click", displayMakePosterForm);
+makePosterBtn.addEventListener("click", displayMakePosterForm);
 
-nevermindBackHomeButton.addEventListener("click", returnHomePosterForm);
+nmBackHomeBtn.addEventListener("click", returnHomePosterForm);
 
-showMyPosterButton.addEventListener("click", userMadePoster);
+showMyPosterBtn.addEventListener("click", userMadePoster);
 
 window.addEventListener("load", displayRandomPoster);
 // functions and event handlers go here 👇
