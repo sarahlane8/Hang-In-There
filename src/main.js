@@ -9,7 +9,7 @@ var showAnotherRandomPoster = document.querySelector(".show-random");
 var savedPostersSection = document.querySelector('.saved-posters');
 var mainPosterSection = document.querySelector('.main-poster');
 
-var makePosterButton = document.querySelector('.make-poster');
+var makePosterButton = document.querySelector('.show-form');
 var makePosterForm = document.querySelector('.poster-form')
 // we've provided you with some data to work with 👇
 var images = [
