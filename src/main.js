@@ -146,6 +146,7 @@ showMyPosterBtn.addEventListener("click", userMadePoster);
 
 saveThisPosterBtn.addEventListener('click', saveThisPoster);
 
+
 window.addEventListener("load", createPoster);
 
 // saveThisPosterBtn.addEventListener('click', saveThisPoster)
@@ -176,8 +177,9 @@ function postersIteration() {
 function displaySavedPosters() {
   mainPosterSection.classList.add('hidden');
   savedPostersSection.classList.remove('hidden');
-  savedPostersGrid.innerHTML = postersIteration() ;
-}
+    savedPostersGrid.innerHTML += postersIteration();
+  }
+
 
 
 function displayMainPoster() {
@@ -201,31 +203,34 @@ function displayMakePosterForm() {
   makePosterForm.classList.remove('hidden');
 }
 
-function saveThisPoster() {
+
+function checkPosterDuplicates() {
   currentPoster =  new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText);
-  if (savedPosters.length === 0) {
-    savedPosters.push(currentPoster);
-  // } else {
-  //     for (var i = 0; i <= savedPosters.length; i++) {
-  //       if (savedPosters[i][savedPosters.src] !== currentPoster[mainPosterImg.src]) {
-  //         savedPosters.push(currentPoster);
-  //     }
+    for (var i = 0; i < savedPosters.length; i++) {
+      if ((savedPosters[i].imageURL !== currentPoster.imageURL) && (savedPosters[i].title !== currentPoster.title) && (savedPosters[i].quote !== currentPoster.quote)) {
+        savedPosters.push(currentPoster);
+      }
     }
-
-
-  if (images.includes(mainPosterImg.src) === false) {
-    images.push(mainPosterImg.src);
-  }
-  if (quotes.includes(mainPosterQuote.innerText) === false) {
-    quotes.push(mainPosterQuote.innerText);
-  }
-  if (titles.includes(mainPosterTitle.innerText) === false) {
-    titles.push(mainPosterTitle.innerText);
-  }
-  // if (!savedPosters.includes(new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText))) {
-
-  // }
 }
+
+function checkElementDuplicates() {
+    currentPoster =  new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText);
+  if (savedPosters.length === 0) {
+   savedPosters.push(currentPoster);
+  } else if (images.includes(mainPosterImg.src) === false) {
+   images.push(mainPosterImg.src);
+  } else if (quotes.includes(mainPosterQuote.innerText) === false) {
+   quotes.push(mainPosterQuote.innerText);
+  } else if (titles.includes(mainPosterTitle.innerText) === false) {
+   titles.push(mainPosterTitle.innerText);
+  }
+}
+
+function saveThisPoster() {
+  checkPosterDuplicates();
+  checkElementDuplicates();
+}
+
 
 function userMadePoster() {
   event.preventDefault();
