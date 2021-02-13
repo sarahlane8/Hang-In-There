@@ -190,7 +190,8 @@ function displayMakePosterForm() {
 }
 
 function saveThisPoster() {
-  savedPosters.push(new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText));
+  currentPoster =  new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText);
+  savedPosters.push(currentPoster);
   if (!images.includes(mainPosterImg.src)) {
     images.push(mainPosterImg.src);
   }
