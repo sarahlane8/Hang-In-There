@@ -163,7 +163,19 @@ function returnHomePosterForm() {
 function displaySavedPosters() {
   mainPosterSection.classList.add('hidden');
   savedPostersSection.classList.remove('hidden');
-  savedPostersGrid.innerHTML= savedPosters;
+  // savedPosters[0].classList.remove('main-poster');
+  // savedPosters[0].classList.add('mini-poster');
+  // savedPostersGrid.innerHTML = savedPosters[0].title + savedPosters[0].imageURL + savedPosters[0].quote;
+  savedPostersGrid.innerHTML =  `<img class="mini-poster.img" src='' alt="nothin' to see here">
+        <h1 class="mini-poster.h2">'title'</h1>
+        <h3 class="mini-poster.h4">'quote'</h3>`
+
+
+  // for (var i = 0; i < savedPosters.length; i++) {
+  //   savedPosters[i].classList.add('mini-poster');
+  //   savedPostersGrid.innerHTML += savedPosters[i];
+  // }
+
     //show saved posters array in grid line 39
 
 }
@@ -191,14 +203,23 @@ function displayMakePosterForm() {
 
 function saveThisPoster() {
   currentPoster =  new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText);
-  savedPosters.push(currentPoster);
-  if (!images.includes(mainPosterImg.src)) {
+  if (savedPosters.length === 0) {
+    savedPosters.push(currentPoster);
+  } else {
+      for (var i = 0; i <= savedPosters.length; i++) {
+        if (savedPosters[i][savedPosters.src] !== currentPoster[mainPosterImg.src]) {
+          savedPosters.push(currentPoster);
+      }
+    }
+  }
+
+  if (images.includes(mainPosterImg.src) === false) {
     images.push(mainPosterImg.src);
   }
-  if (!quotes.includes(mainPosterQuote.innerText)) {
+  if (quotes.includes(mainPosterQuote.innerText) === false) {
     quotes.push(mainPosterQuote.innerText);
   }
-  if (!titles.includes(mainPosterTitle.innerText)) {
+  if (titles.includes(mainPosterTitle.innerText) === false) {
     titles.push(mainPosterTitle.innerText);
   }
   // if (!savedPosters.includes(new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText))) {
@@ -214,24 +235,3 @@ function userMadePoster() {
   mainPosterSection.classList.remove('hidden');
   makePosterForm.classList.add('hidden');
 }
-
-// function saveThisPoster() {
-//   new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText) {
-//     this.id = Date.now();
-//     this.imageURL = mainPosterImg.src;
-//     this.title = mainPosterTitle.innerText;
-//     this.quote = mainPosterQuote.innerText;
-//   }
-// }
-
-//   if (images.includes([this.imageURL]) === false) {
-//     images.push(this.imageURL);
-//   };
-// console.log(images);
-//   if (!titles.includes([this.title])) {
-//     titles.push(this.title);
-//   };
-//
-//   if (!quotes.includes([this.quote])) {
-//     quotes.push(this.quote);
-//   };
