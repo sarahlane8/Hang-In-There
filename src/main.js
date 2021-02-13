@@ -19,6 +19,8 @@ var userInputUrl = document.querySelector('#poster-image-url');
 var userInputTitle = document.querySelector('#poster-title');
 var userInputQuote = document.querySelector('#poster-quote');
 
+var savedPostersGrid = document.querySelector('.saved-posters-grid');
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -161,6 +163,9 @@ function returnHomePosterForm() {
 function displaySavedPosters() {
   mainPosterSection.classList.add('hidden');
   savedPostersSection.classList.remove('hidden');
+  savedPostersGrid.innerHTML= savedPosters;
+    //show saved posters array in grid line 39
+
 }
 
 function displayMainPoster() {
@@ -186,15 +191,18 @@ function displayMakePosterForm() {
 
 function saveThisPoster() {
   savedPosters.push(new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText));
-  if (images.includes(mainPosterImg.src) === false) {
+  if (!images.includes(mainPosterImg.src)) {
     images.push(mainPosterImg.src);
   }
-  if (quotes.includes(mainPosterQuote.innerText) === false) {
+  if (!quotes.includes(mainPosterQuote.innerText)) {
     quotes.push(mainPosterQuote.innerText);
   }
-  if (titles.includes(mainPosterTitle.innerText) === false) {
+  if (!titles.includes(mainPosterTitle.innerText)) {
     titles.push(mainPosterTitle.innerText);
   }
+  // if (!savedPosters.includes(new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText))) {
+
+  // }
 }
 
 function userMadePoster() {
