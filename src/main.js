@@ -160,25 +160,25 @@ function returnHomePosterForm() {
   makePosterForm.classList.add('hidden');
 }
 
+function postersIteration() {
+  for (var i = 0; i < savedPosters.length; i++) {
+    var miniPoster = `
+    <article class="mini-poster">
+      <img src="${savedPosters[i].imageURL}" alt="nothin' to see here">
+      <h2>${savedPosters[i].title}</h2>
+      <h4>${savedPosters[i].quote}</h4>
+    </article>
+    `
+  }
+    return miniPoster;
+}
+
 function displaySavedPosters() {
   mainPosterSection.classList.add('hidden');
   savedPostersSection.classList.remove('hidden');
-  // savedPosters[0].classList.remove('main-poster');
-  // savedPosters[0].classList.add('mini-poster');
-  // savedPostersGrid.innerHTML = savedPosters[0].title + savedPosters[0].imageURL + savedPosters[0].quote;
-  savedPostersGrid.innerHTML =  `<img class="mini-poster.img" src='' alt="nothin' to see here">
-        <h1 class="mini-poster.h2">'title'</h1>
-        <h3 class="mini-poster.h4">'quote'</h3>`
-
-
-  // for (var i = 0; i < savedPosters.length; i++) {
-  //   savedPosters[i].classList.add('mini-poster');
-  //   savedPostersGrid.innerHTML += savedPosters[i];
-  // }
-
-    //show saved posters array in grid line 39
-
+  savedPostersGrid.innerHTML = postersIteration() ;
 }
+
 
 function displayMainPoster() {
   mainPosterSection.classList.remove('hidden');
@@ -205,13 +205,13 @@ function saveThisPoster() {
   currentPoster =  new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText);
   if (savedPosters.length === 0) {
     savedPosters.push(currentPoster);
-  } else {
-      for (var i = 0; i <= savedPosters.length; i++) {
-        if (savedPosters[i][savedPosters.src] !== currentPoster[mainPosterImg.src]) {
-          savedPosters.push(currentPoster);
-      }
+  // } else {
+  //     for (var i = 0; i <= savedPosters.length; i++) {
+  //       if (savedPosters[i][savedPosters.src] !== currentPoster[mainPosterImg.src]) {
+  //         savedPosters.push(currentPoster);
+  //     }
     }
-  }
+
 
   if (images.includes(mainPosterImg.src) === false) {
     images.push(mainPosterImg.src);
