@@ -163,7 +163,7 @@ function returnHomePosterForm() {
 
 function postersIteration() {
   for (var i = 0; i < savedPosters.length; i++) {
-    var miniPoster = `
+    savedPostersGrid.innerHTML += `
     <article class="mini-poster">
       <img src="${savedPosters[i].imageURL}" alt="nothin' to see here">
       <h2>${savedPosters[i].title}</h2>
@@ -171,13 +171,13 @@ function postersIteration() {
     </article>
     `
   }
-    return miniPoster;
 }
 
 function displaySavedPosters() {
   mainPosterSection.classList.add('hidden');
   savedPostersSection.classList.remove('hidden');
-    savedPostersGrid.innerHTML += postersIteration();
+  savedPostersGrid.innerHTML = `<article></article>`;
+  postersIteration();
   }
 
 
