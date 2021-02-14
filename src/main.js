@@ -144,7 +144,7 @@ showMyPosterBtn.addEventListener('click', userMadePoster);
 
 saveThisPosterBtn.addEventListener('click', saveThisPoster);
 
-*****something****.addEventListener('dblclick', deleteSavedPoster);
+// *****something****.addEventListener('dblclick', deleteSavedPoster);
 
 window.addEventListener('load', createPoster);
 
@@ -159,9 +159,9 @@ function returnHomePosterForm() {
   makePosterForm.classList.add('hidden');
 }
 
-function deleteSavedPoster() {
-  savedPostersGrid.innerHTML = .delete
-}
+// function deleteSavedPoster() {
+//   savedPostersGrid.innerHTML = .delete
+// }
 
 function postersIteration() {
 savedPostersGrid.innerHTML = null;
@@ -215,14 +215,14 @@ function checkPosterDuplicates() {
 }
 
 function checkElementDuplicates() {
-  if (images.includes(mainPosterImg.src) === false) {
+  if (!images.includes(mainPosterImg.src)) {
    images.push(mainPosterImg.src);
   }
-  if (quotes.includes(mainPosterQuote.innerText) === false) {
+  if (!quotes.includes(mainPosterQuote.innerText)) {
    quotes.push(mainPosterQuote.innerText);
   }
-  if (titles.includes(mainPosterTitle.innerText) === false) {
-   titles.push(mainPosterTitle.innerText);
+  if (!titles.includes(mainPosterTitle.innerText.toLowerCase())) {
+   titles.push(mainPosterTitle.innerText.toLowerCase());
   }
 }
 
