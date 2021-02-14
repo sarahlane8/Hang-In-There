@@ -144,9 +144,9 @@ showMyPosterBtn.addEventListener('click', userMadePoster);
 
 saveThisPosterBtn.addEventListener('click', saveThisPoster);
 
-// *****something****.addEventListener('dblclick', deleteSavedPoster);
-
 window.addEventListener('load', createPoster);
+
+savedPostersGrid.addEventListener('dblclick', handleDeleteClick);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -159,15 +159,24 @@ function returnHomePosterForm() {
   makePosterForm.classList.add('hidden');
 }
 
-// function deleteSavedPoster() {
-//   savedPostersGrid.innerHTML = .delete
-// }
+function handleDeleteClick(e) {
+  if (e.target.closest(".mini-poster")) {
+    console.log(e.target.closest(".mini-poster"));
+    var elementId = e.target.closest(".mini-poster").id;
+    for (var i = 0; i < savedPosters.length; i++) {
+      if (savedPosters[i].id === parseInt(elementId)) {
+        savedPosters.splice(i, 1);
+        postersIteration();
+      }
+    }
+  }
+}
 
 function postersIteration() {
 savedPostersGrid.innerHTML = null;
   for (var i = 0; i < savedPosters.length; i++) {
     savedPostersGrid.innerHTML += `
-    <article class="mini-poster">
+    <article class="mini-poster" id="${savedPosters[i].id}">
       <img src="${savedPosters[i].imageURL}" alt="nothin' to see here">
       <h2>${savedPosters[i].title}</h2>
       <h4>${savedPosters[i].quote}</h4>
@@ -204,7 +213,6 @@ function displayMakePosterForm() {
 }
 
 function saveThisPoster() {
-  console.log('currentPoster in save this poster: ', currentPoster);
   if (!isPosterDuplicated()) {
     savedPosters.push(currentPoster);
   }
@@ -223,7 +231,6 @@ function isPosterDuplicated() {
   return false;
 }
 
-//
 function checkElementDuplicates() {
   if (!images.includes(mainPosterImg.src)) {
    images.push(mainPosterImg.src);
@@ -239,7 +246,6 @@ function checkElementDuplicates() {
 function userMadePoster() {
   event.preventDefault();
   currentPoster = new Poster(userInputUrl.value, userInputTitle.value, userInputQuote.value);
-  console.log('currentPoster in user made poster: ', currentPoster);
   mainPosterImg.src = currentPoster.imageURL;
   mainPosterTitle.innerText = currentPoster.title;
   mainPosterQuote.innerText = currentPoster.quote;
