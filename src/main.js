@@ -6,6 +6,7 @@ var mainPosterQuote = document.querySelector('.poster-quote');
 var saveThisPosterBtn = document.querySelector('.save-poster');
 var savedPostersBtn = document.querySelector('.show-saved');
 var backToMainBtn = document.querySelector('.back-to-main');
+
 var showRandomPoster = document.querySelector(".show-random");
 var savedPostersSection = document.querySelector('.saved-posters');
 var mainPosterSection = document.querySelector('.main-poster');
@@ -13,12 +14,12 @@ var mainPosterSection = document.querySelector('.main-poster');
 var makePosterBtn = document.querySelector('.show-form');
 var makePosterForm = document.querySelector('.poster-form');
 var nmBackHomeBtn = document.querySelector('.show-main');
-var showMyPosterBtn = document.querySelector('.make-poster');
 
+var showMyPosterBtn = document.querySelector('.make-poster');
 var userInputUrl = document.querySelector('#poster-image-url');
 var userInputTitle = document.querySelector('#poster-title');
-var userInputQuote = document.querySelector('#poster-quote');
 
+var userInputQuote = document.querySelector('#poster-quote');
 var savedPostersGrid = document.querySelector('.saved-posters-grid');
 
 
@@ -122,9 +123,6 @@ var quotes = [
 ];
 var savedPosters = [];
 
-
-
-
 var currentPoster;
 var startTitle = titles[getRandomIndex(titles)];
 var startQuote = quotes[getRandomIndex(quotes)];
@@ -132,24 +130,24 @@ var startImg = images[getRandomIndex(images)];
 
 
 // event listeners go here 👇
-showRandomPoster.addEventListener("click", createPoster);
+showRandomPoster.addEventListener('click', createPoster);
 
-savedPostersBtn.addEventListener("click", displaySavedPosters);
+savedPostersBtn.addEventListener('click', displaySavedPosters);
 
-backToMainBtn.addEventListener("click", displayMainPoster);
+backToMainBtn.addEventListener('click', displayMainPoster);
 
-makePosterBtn.addEventListener("click", displayMakePosterForm);
+makePosterBtn.addEventListener('click', displayMakePosterForm);
 
-nmBackHomeBtn.addEventListener("click", returnHomePosterForm);
+nmBackHomeBtn.addEventListener('click', returnHomePosterForm);
 
-showMyPosterBtn.addEventListener("click", userMadePoster);
+showMyPosterBtn.addEventListener('click', userMadePoster);
 
 saveThisPosterBtn.addEventListener('click', saveThisPoster);
 
+*****something****.addEventListener('dblclick', deleteSavedPoster);
 
-window.addEventListener("load", createPoster);
+window.addEventListener('load', createPoster);
 
-// saveThisPosterBtn.addEventListener('click', saveThisPoster)
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
@@ -161,6 +159,9 @@ function returnHomePosterForm() {
   makePosterForm.classList.add('hidden');
 }
 
+function deleteSavedPoster() {
+  savedPostersGrid.innerHTML = .delete
+}
 
 function postersIteration() {
 savedPostersGrid.innerHTML = null;
@@ -175,22 +176,18 @@ savedPostersGrid.innerHTML = null;
   }
 }
 
-
 function displaySavedPosters() {
   mainPosterSection.classList.add('hidden');
   savedPostersSection.classList.remove('hidden');
-  // savedPostersGrid.innerHTML = `<article></article>`;
   postersIteration();
-  }
-
-
+}
 
 function displayMainPoster() {
   mainPosterSection.classList.remove('hidden');
   savedPostersSection.classList.add('hidden');
 }
 
-function createPoster() {///
+function createPoster() {
   currentPoster = new Poster(images[getRandomIndex(images)], titles[getRandomIndex(titles)], quotes[getRandomIndex(quotes)]);
   displayRandomPoster();
 }
@@ -212,18 +209,12 @@ function saveThisPoster() {
 }
 
 function checkPosterDuplicates() {
-  // currentPoster =  new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText);
-  console.log(currentPoster);
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
   }
 }
 
-
-
 function checkElementDuplicates() {
-   ///this needs to start over as an if statement, because if the first one they save
-   //is a user made poster, it won't ever save the values to element arrays
   if (images.includes(mainPosterImg.src) === false) {
    images.push(mainPosterImg.src);
   }
@@ -234,12 +225,6 @@ function checkElementDuplicates() {
    titles.push(mainPosterTitle.innerText);
   }
 }
-
-// function saveThisPoster() {
-//   checkPosterDuplicates();
-//   checkElementDuplicates();
-// }
-
 
 function userMadePoster() {
   event.preventDefault();
