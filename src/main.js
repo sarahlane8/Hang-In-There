@@ -161,7 +161,9 @@ function returnHomePosterForm() {
   makePosterForm.classList.add('hidden');
 }
 
+
 function postersIteration() {
+savedPostersGrid.innerHTML = null;
   for (var i = 0; i < savedPosters.length; i++) {
     savedPostersGrid.innerHTML += `
     <article class="mini-poster">
@@ -173,10 +175,11 @@ function postersIteration() {
   }
 }
 
+
 function displaySavedPosters() {
   mainPosterSection.classList.add('hidden');
   savedPostersSection.classList.remove('hidden');
-  savedPostersGrid.innerHTML = `<article></article>`;
+  // savedPostersGrid.innerHTML = `<article></article>`;
   postersIteration();
   }
 
@@ -187,7 +190,7 @@ function displayMainPoster() {
   savedPostersSection.classList.add('hidden');
 }
 
-function createPoster() {
+function createPoster() {///
   currentPoster = new Poster(images[getRandomIndex(images)], titles[getRandomIndex(titles)], quotes[getRandomIndex(quotes)]);
   displayRandomPoster();
 }
@@ -203,40 +206,47 @@ function displayMakePosterForm() {
   makePosterForm.classList.remove('hidden');
 }
 
-
-function checkPosterDuplicates() {
-  currentPoster =  new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText);
-    for (var i = 0; i < savedPosters.length; i++) {
-      if ((savedPosters[i].imageURL !== currentPoster.imageURL) && (savedPosters[i].title !== currentPoster.title) && (savedPosters[i].quote !== currentPoster.quote)) {
-        savedPosters.push(currentPoster);
-      }
-    }
-}
-
-function checkElementDuplicates() {
-    currentPoster =  new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText);
-  if (savedPosters.length === 0) {
-   savedPosters.push(currentPoster);
-  } else if (images.includes(mainPosterImg.src) === false) {
-   images.push(mainPosterImg.src);
-  } else if (quotes.includes(mainPosterQuote.innerText) === false) {
-   quotes.push(mainPosterQuote.innerText);
-  } else if (titles.includes(mainPosterTitle.innerText) === false) {
-   titles.push(mainPosterTitle.innerText);
-  }
-}
-
 function saveThisPoster() {
   checkPosterDuplicates();
   checkElementDuplicates();
 }
 
+function checkPosterDuplicates() {
+  // currentPoster =  new Poster(mainPosterImg.src, mainPosterTitle.innerText, mainPosterQuote.innerText);
+  console.log(currentPoster);
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
+  }
+}
+
+
+
+function checkElementDuplicates() {
+   ///this needs to start over as an if statement, because if the first one they save
+   //is a user made poster, it won't ever save the values to element arrays
+  if (images.includes(mainPosterImg.src) === false) {
+   images.push(mainPosterImg.src);
+  }
+  if (quotes.includes(mainPosterQuote.innerText) === false) {
+   quotes.push(mainPosterQuote.innerText);
+  }
+  if (titles.includes(mainPosterTitle.innerText) === false) {
+   titles.push(mainPosterTitle.innerText);
+  }
+}
+
+// function saveThisPoster() {
+//   checkPosterDuplicates();
+//   checkElementDuplicates();
+// }
+
 
 function userMadePoster() {
   event.preventDefault();
-  mainPosterImg.src = userInputUrl.value;
-  mainPosterTitle.innerText = userInputTitle.value;
-  mainPosterQuote.innerText = userInputQuote.value;
+  currentPoster = new Poster(userInputUrl.value, userInputTitle.value, userInputQuote.value);
+  mainPosterImg.src = currentPoster.imageURL;
+  mainPosterTitle.innerText = currentPoster.title;
+  mainPosterQuote.innerText = currentPoster.quote;
   mainPosterSection.classList.remove('hidden');
   makePosterForm.classList.add('hidden');
 }
