@@ -204,16 +204,26 @@ function displayMakePosterForm() {
 }
 
 function saveThisPoster() {
-  checkPosterDuplicates();
+  console.log('currentPoster in save this poster: ', currentPoster);
+  if (!isPosterDuplicated()) {
+    savedPosters.push(currentPoster);
+  }
   checkElementDuplicates();
 }
 
-function checkPosterDuplicates() {
-  if (!savedPosters.includes(currentPoster)) {
-    savedPosters.push(currentPoster);
+function isPosterDuplicated() {
+  for (var i = 0; i < savedPosters.length; i++) {
+    var hasDuplicateImageURL = savedPosters[i].imageURL === currentPoster.imageURL;
+    var hasDuplicateTitle = savedPosters[i].title === currentPoster.title;
+    var hasDuplicateQuote = savedPosters[i].quote === currentPoster.quote;
+    if (hasDuplicateImageURL && hasDuplicateTitle && hasDuplicateQuote) {
+      return true;
+    }
   }
+  return false;
 }
 
+//
 function checkElementDuplicates() {
   if (!images.includes(mainPosterImg.src)) {
    images.push(mainPosterImg.src);
@@ -229,6 +239,7 @@ function checkElementDuplicates() {
 function userMadePoster() {
   event.preventDefault();
   currentPoster = new Poster(userInputUrl.value, userInputTitle.value, userInputQuote.value);
+  console.log('currentPoster in user made poster: ', currentPoster);
   mainPosterImg.src = currentPoster.imageURL;
   mainPosterTitle.innerText = currentPoster.title;
   mainPosterQuote.innerText = currentPoster.quote;
