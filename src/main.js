@@ -122,12 +122,7 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
-
 var currentPoster;
-var startTitle = titles[getRandomIndex(titles)];
-var startQuote = quotes[getRandomIndex(quotes)];
-var startImg = images[getRandomIndex(images)];
-
 
 // event listeners go here 👇
 showRandomPoster.addEventListener('click', createPoster);
@@ -161,7 +156,6 @@ function returnHomePosterForm() {
 
 function handleDeleteClick(e) {
   if (e.target.closest(".mini-poster")) {
-    console.log(e.target.closest(".mini-poster"));
     var elementId = e.target.closest(".mini-poster").id;
     for (var i = 0; i < savedPosters.length; i++) {
       if (savedPosters[i].id === parseInt(elementId)) {
@@ -246,9 +240,7 @@ function checkElementDuplicates() {
 function userMadePoster() {
   event.preventDefault();
   currentPoster = new Poster(userInputUrl.value, userInputTitle.value, userInputQuote.value);
-  mainPosterImg.src = currentPoster.imageURL;
-  mainPosterTitle.innerText = currentPoster.title;
-  mainPosterQuote.innerText = currentPoster.quote;
+  displayRandomPoster();
   mainPosterSection.classList.remove('hidden');
   makePosterForm.classList.add('hidden');
 }
